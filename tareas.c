@@ -2,46 +2,66 @@
 #include <stdlib.h>
 #include <string.h>
 
-    /*---estructuras---*/
-    char tareas[6][10] = {"limpiar", "ordenar", "repositar", "vender", "cobrar", "cuidado"};
-    struct Tarea
-    {
-        int TareaID;       // Numérico autoincremental comenzando en 1000
-        char *Descripcion; //
-        int Duracion;      // entre 10 – 100
-        
-    } typedef Tarea;
+/*---estructuras---*/
+char tareas[6][10] = {"limpiar", "ordenar", "repositar", "vender", "cobrar", "cuidado"};
+struct Tarea
+{
+    int TareaID;       // Numérico autoincremental comenzando en 1000
+    char *Descripcion; //
+    int Duracion;      // entre 10 – 100
 
-    struct Nodo
-    {
-        Tarea T;
-        Nodo *Siguiente;
+} typedef Tarea;
 
-    } typedef Nodo;
+struct Nodo
+{
+    Tarea T;
+    Nodo *Siguiente;
 
-    Tarea crearTarea(int ID)
-    {
-        Tarea nuevaLabor;
+} typedef Nodo;
 
-        nuevaLabor.TareaID = ID;
+Tarea crearTarea(int ID)
+{
+    Tarea nuevaLabor;
 
-        int indice = rand() % 5;
-        int longitudNombre = strlen(tareas[indice]) + 1;
+    nuevaLabor.TareaID = ID;
 
-        nuevaLabor.Descripcion = malloc(sizeof(char) * longitudNombre);
+    int indice = rand() % 5;
+    int longitudNombre = strlen(tareas[indice]) + 1;
 
-        strcpy(nuevaLabor.Descripcion, tareas[indice]);
+    nuevaLabor.Descripcion = malloc(sizeof(char) * longitudNombre);
 
-        nuevaLabor.Duracion = rand() % 91 + 10;
+    strcpy(nuevaLabor.Descripcion, tareas[indice]);
 
-        return nuevaLabor;
+    nuevaLabor.Duracion = rand() % 91 + 10;
 
-    }
+    return nuevaLabor;
+}
 
-    Nodo* crearNodo(Tarea nuevaLabor)
-    {
+Nodo *crearNodo(Tarea nuevaLabor)
+{
+    Nodo *nuevaLaborNodo = (Nodo *)malloc(sizeof(Nodo));
 
-    }
+    nuevaLaborNodo->T=nuevaLabor;
+    nuevaLaborNodo->Siguiente=NULL;
+
+    return nuevaLaborNodo;
+}
+
+Nodo* crearlista()
+{
+    return NULL;
+}
+
+void insertarnodo(Nodo** l, Nodo* nuevalabornodo)
+{
+    nuevalabornodo->Siguiente=*l;
+    *l=nuevalabornodo;
+}
+
+void cargarnodo(Nodo** l,int cantidadtareas)
+{
+
+}
 
 void main()
 {
